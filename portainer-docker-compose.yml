@@ -1,0 +1,27 @@
+version: '3.1'
+
+volumes:
+    postgres_db_data:
+
+services:
+
+    portainer:
+        image: portainer/portainer
+        ports:
+           - "9001:9000"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - portainer_data:/data
+        # networks:
+        #     - loadbalancer-net
+        deploy:
+            placement:
+                constraints: [node.role == manager]
+            update_config:
+                parallelism: 1
+                delay: 10s
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
