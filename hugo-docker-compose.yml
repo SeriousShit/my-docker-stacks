@@ -1,0 +1,51 @@
+version: '3'
+
+volumes:
+    website_sources:
+    website_static_files:
+
+services:
+
+    hugo:
+        image: jojomi/hugo:latest
+        volumes:
+            - website_sources:/src
+            - website_static_files:/output
+        environment:
+            - HUGO_REFRESH_TIME=1800
+            - HUGO_BASEURL=/
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+    
+
+    hugo-nginx:
+        image: nginx:stable-alpine
+        ports:
+            - "8000:80"
+        volumes:
+            - website_static_files:/usr/share/nginx/html/
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+
+
+    hugo-git-sync:
+        image: gici/git-sync
+        environment:
+            GIT_SYNC_REPO: "https://github.com/SeriousShit/website.git"
+            GIT_SYNC_DEST: /src 
+            GIT_SYNC_BRANCH: master
+            GIT_SYNC_REV: "FETCH_HEAD" 
+            GIT_SYNC_WAIT: 1800
+
+        volumes:
+            - website_sources:/src
+
+
