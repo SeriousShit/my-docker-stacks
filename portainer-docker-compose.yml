@@ -3,7 +3,7 @@ version: '3.1'
 
 networks:
     loadbalancer-net:
-
+         external: true
 
 volumes:
     portainer_data:
