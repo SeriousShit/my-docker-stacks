@@ -9,3 +9,5 @@ docker network create --driver=overlay loadbalancer-net
 docker stack deploy -c portainer-docker-compose.yml portainer
 #Mailserver
 #docker stack deploy -c mailserver-docker-compose.yml mailserver
+#Traefik
+docker stack deploy -c traefik-docker-compose.yml traefik
