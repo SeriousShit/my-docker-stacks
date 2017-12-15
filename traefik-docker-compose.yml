@@ -1,8 +1,11 @@
 version: '3.1'
 
-services:
+networks:
+    loadbalancer-net:
+         external: true
 
-    portainer:
+services:
+    traefik:
         image: traefik:v1.4.4
         command: --web --docker --docker.swarmmode --docker.watch --docker.domain=traefik --logLevel=DEBUG
         ports:
