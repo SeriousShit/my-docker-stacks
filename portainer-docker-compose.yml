@@ -13,8 +13,8 @@ services:
 
     portainer:
         image: portainer/portainer
-        ports:
-           - "9001:9000"
+        # ports:
+        #    - "9001:9000"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - portainer_data:/data
@@ -31,3 +31,8 @@ services:
                 delay: 10s
                 max_attempts: 3
                 window: 120s
+            labels:
+                - "traefik.backend.loadbalancer.swarm=true"
+                - "traefik.port=9000"
+                - "traefik.frontend.rule=Host:portainer.v22017125338957481.megasrv.de"
+                - "traefik.docker.network=loadbalancer-net"
