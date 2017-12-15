@@ -29,8 +29,8 @@ services:
 
     hugo-nginx:
         image: nginx:stable-alpine
-        # ports:
-        #     - "8000:80"
+        ports:
+            - "8000:80"
         volumes:
             - website_static_files:/usr/share/nginx/html/
         networks:
