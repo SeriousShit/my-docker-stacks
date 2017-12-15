@@ -33,6 +33,8 @@ services:
         #     - "8000:80"
         volumes:
             - website_static_files:/usr/share/nginx/html/
+        networks:
+            - loadbalancer-net
         deploy:
             restart_policy:
                 condition: on-failure
