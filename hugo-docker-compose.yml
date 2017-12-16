@@ -9,6 +9,7 @@ networks:
 volumes:
     website_sources:
     website_static_files:
+    website_nginx_cache:
 
 
 services:
@@ -32,6 +33,7 @@ services:
             - "8000:80"
         volumes:
             - website_static_files:/usr/share/nginx/html/
+            - website_nginx_cache:/var/cache/nginx
         networks:
             - loadbalancer-net
         deploy:
