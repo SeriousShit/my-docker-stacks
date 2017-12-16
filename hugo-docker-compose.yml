@@ -9,8 +9,7 @@ networks:
 volumes:
     website_sources:
     website_static_files:
-    website_nginx_cache:
-        
+
 
 services:
     hugo:
@@ -19,7 +18,7 @@ services:
             - website_sources:/src
             - website_static_files:/output
         environment:
-            - HUGO_WATCH=1
+            - HUGO_REFRESH_TIME=1800
             - HUGO_BASEURL=/
         deploy:
             restart_policy:
@@ -34,7 +33,6 @@ services:
             - "8000:80"
         volumes:
             - website_static_files:/usr/share/nginx/html/
-            - website_nginx_cache:/var/cache/nginx
         networks:
             - loadbalancer-net
         deploy:
