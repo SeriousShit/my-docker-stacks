@@ -2,10 +2,11 @@ version: '3.1'
 
 
 networks:
-  loadbalancer-net:
+    loadbalancer-net:
 
 
-staticContentServer:
+services:
+    staticContentServer:
         image: waddle/webclient
         networks:
             - loadbalancer-net
@@ -24,7 +25,6 @@ staticContentServer:
                 - "traefik.port=80"
                 - "traefik.backend=static"
                 - "traefik.frontend.rule=Path:/static"
-
                 - "traefik.backend.loadbalancer.swarm=true"
                 - "traefik.frontend.rule=Host:waddle.v22017125338957481.megasrv.de"
                 - "traefik.docker.network=loadbalancer-net"
