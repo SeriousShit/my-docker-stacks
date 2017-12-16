@@ -1,0 +1,30 @@
+version: '3.1'
+
+
+networks:
+  loadbalancer-net:
+
+
+staticContentServer:
+        image: waddle/webclient
+        networks:
+            - loadbalancer-net
+        deploy:
+            # placement:
+            #     constraints: [node.role == worker]
+            update_config:
+                parallelism: 2
+                delay: 10s
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+            labels:
+                - "traefik.port=80"
+                - "traefik.backend=static"
+                - "traefik.frontend.rule=Path:/static"
+
+                - "traefik.backend.loadbalancer.swarm=true"
+                - "traefik.frontend.rule=Host:waddle.v22017125338957481.megasrv.de"
+                - "traefik.docker.network=loadbalancer-net"
