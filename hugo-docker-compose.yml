@@ -18,8 +18,7 @@ services:
             - website_sources:/src
             - website_static_files:/output
         environment:
-            - HUGO_REFRESH_TIME=1800
-            - HUGO_BASEURL=/
+            - HUGO_WATCH: 1
         deploy:
             restart_policy:
                 condition: on-failure
