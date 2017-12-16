@@ -19,7 +19,7 @@ services:
             - website_sources:/src
             - website_static_files:/output
         environment:
-            - HUGO_WATCH: 1
+            - HUGO_WATCH: "1"
         deploy:
             restart_policy:
                 condition: on-failure
