@@ -16,7 +16,7 @@ secrets:
         external: true
     HASH_KEY:
         external: true
-    CIPHER_KEY
+    CIPHER_KEY:
         external: true
 
 services:
