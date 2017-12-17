@@ -8,7 +8,7 @@ networks:
 
 services:
     staticContentServer:
-        image: waddle/webclient
+        image: waddle/webclient:latest
         networks:
             - loadbalancer-net
         ports:
