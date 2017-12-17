@@ -27,7 +27,7 @@ services:
             - postgres_password
         environment:
             POSTGRES_USER: vapor
-            POSTGRES_DB: vapor
+            POSTGRES_DB: /run/secrets/postgres_password
             POSTGRES_PASSWORD: vapor
 
 
