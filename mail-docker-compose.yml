@@ -5,7 +5,7 @@ services:
     image: tvial/docker-mailserver:latest
     hostname: mail
     domainname: .v22017125338957481.megasrv.de
-    container_name: mail
+    # container_name: mail
     ports:
         - "25:25"
         - "143:143"
@@ -22,9 +22,9 @@ services:
         - ENABLE_POSTGREY=1
         - ONE_DIR=1
         - DMS_DEBUG=0
-    cap_add:
-        - NET_ADMIN
-        - SYS_PTRACE
+    # cap_add:
+    #     - NET_ADMIN
+    #     - SYS_PTRACE
 
 volumes:
   maildata:
