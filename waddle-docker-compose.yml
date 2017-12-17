@@ -1,0 +1,69 @@
+version: '3.1'
+
+
+volumes:
+    postgres_db_data:
+
+
+networks:
+    loadbalancer-net:
+         external: true
+    postgres-net:
+
+
+services:
+
+    postgres-db:
+        image: postgres
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_db_data:/var/lib/postgresql/data
+        networks:
+            - postgres-net
+        environment:
+            POSTGRES_USER: /run/secrets/POSTGRES_USER
+            POSTGRES_PASSWORD: /run/secrets/POSTGRES_PASSWORD
+            POSTGRES_DB: /run/secrets/POSTGRES_DB
+
+
+    apiserver:
+        image: waddle/webserver
+        command: ["./wait-for-it.sh", "postgres-db:5432", "--", "docker-entrypoint.sh"] 
+        # ports:
+        #    - "9000:9000"
+        networks:
+            - postgres-net
+            - loadbalancer-net
+        
+        environment:
+            POSTGRES_HOSTNAME: postgres-db
+            POSTGRES_PORT: 5432
+            POSTGRES_USER: /run/secrets/POSTGRES_USER
+            POSTGRES_PASSWORD: /run/secrets/POSTGRES_PASSWORD
+            POSTGRES_DB: /run/secrets/POSTGRES_DB
+
+            HASH_KEY: /run/secrets/HASH_KEY
+            CIPHER_KEY: /run/secrets/CIPHER_KEY
+
+        deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+            update_config:
+                parallelism: 1
+                delay: 10s
+            labels:
+                - traefik.enable: "true"
+                - traefik.frontend.passHostHeader: "true"
+                - traefik.backend.loadbalancer.stickiness: "true"
+                - traefik.backend.loadbalancer.swarm: "true"
+                - traefik.port: "9000"
+                - traefik.frontend.rule: "Host:v22017125338957481.megasrv.de"
+                - traefik.docker.network: "loadbalancer-net"
+
+
