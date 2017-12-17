@@ -6,9 +6,11 @@ volumes:
 
 
 networks:
-    loadbalancer-net:
-         external: true
     postgres-net:
+        external: true
+    loadbalancer-net:
+        external: true
+
 
 
 services:
@@ -43,6 +45,8 @@ services:
             POSTGRES_PASSWORD: /run/secrets/POSTGRES_PASSWORD
             POSTGRES_DB: /run/secrets/POSTGRES_DB
 
+            PORT: 9001
+
             HASH_KEY: /run/secrets/HASH_KEY
             CIPHER_KEY: /run/secrets/CIPHER_KEY
 
@@ -62,7 +66,7 @@ services:
                 traefik.frontend.passHostHeader: "true"
                 traefik.backend.loadbalancer.stickiness: "true"
                 traefik.backend.loadbalancer.swarm: "true"
-                traefik.port: "9000"
+                traefik.port: "9001"
                 traefik.frontend.rule: "Host:api.v22017125338957481.megasrv.de"
                 traefik.docker.network: "loadbalancer-net"
 
