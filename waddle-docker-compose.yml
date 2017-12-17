@@ -26,9 +26,9 @@ services:
         secrets:
             - postgres_password
         environment:
-            - "POSTGRES_USER=waddle"
-            - "POSTGRES_PASSWORD=/run/secrets/postgres_password"
-            - "POSTGRES_DB=waddle"
+            - POSTGRES_USER=waddle
+            - POSTGRES_PASSWORD=/run/secrets/postgres_password
+            - POSTGRES_DB=waddle
 
 
     apiserver:
@@ -44,14 +44,14 @@ services:
             - hash_key
             - cipher_key
         environment:
-            - "POSTGRES_HOSTNAME=postgres-db"
-            - "POSTGRES_PORT=5432"
-            - "POSTGRES_USER=waddle"
-            - "POSTGRES_PASSWORD=/run/secrets/postgres_password"
-            - "POSTGRES_DB=waddle"
-            - "PORT=9001"
-            - "HASH_KEY=/run/secrets/hash_key"
-            - "CIPHER_KEY=/run/secrets/cipher_key"
+            - POSTGRES_HOSTNAME=postgres-db
+            - POSTGRES_PORT=5432
+            - POSTGRES_USER=waddle
+            - POSTGRES_PASSWORD=/run/secrets/postgres_password
+            - POSTGRES_DB=waddle
+            - PORT=9001
+            - HASH_KEY=/run/secrets/hash_key
+            - CIPHER_KEY=/run/secrets/cipher_key
 
         deploy:
             mode: replicated
