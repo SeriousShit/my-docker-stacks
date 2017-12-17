@@ -11,7 +11,13 @@ networks:
     loadbalancer-net:
         external: true
 
-
+secrets:
+    POSTGRES_PASSWORD:
+        external: true
+    HASH_KEY:
+        external: true
+    CIPHER_KEY
+        external: true
 
 services:
 
@@ -24,9 +30,9 @@ services:
         networks:
             - postgres-net
         environment:
-            POSTGRES_USER: /run/secrets/POSTGRES_USER
+            POSTGRES_USER: waddle
             POSTGRES_PASSWORD: /run/secrets/POSTGRES_PASSWORD
-            POSTGRES_DB: /run/secrets/POSTGRES_DB
+            POSTGRES_DB: waddle
 
 
     apiserver:
@@ -41,9 +47,9 @@ services:
         environment:
             POSTGRES_HOSTNAME: postgres-db
             POSTGRES_PORT: 5432
-            POSTGRES_USER: /run/secrets/POSTGRES_USER
+            POSTGRES_USER: waddle
             POSTGRES_PASSWORD: /run/secrets/POSTGRES_PASSWORD
-            POSTGRES_DB: /run/secrets/POSTGRES_DB
+            POSTGRES_DB: waddle
 
             PORT: 9001
 
