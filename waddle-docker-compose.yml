@@ -29,6 +29,8 @@ services:
             - postgres_db_data:/var/lib/postgresql/data
         networks:
             - postgres-net
+        secrets:
+            - postgres_password
         environment:
             POSTGRES_USER: waddle
             POSTGRES_PASSWORD: /run/secrets/postgres_password
@@ -43,7 +45,10 @@ services:
         networks:
             - postgres-net
             - loadbalancer-net
-        
+        secrets:
+            - postgres_password
+            - hash_key
+            - cipher_key
         environment:
             POSTGRES_HOSTNAME: postgres-db
             POSTGRES_PORT: 5432
