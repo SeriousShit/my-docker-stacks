@@ -54,9 +54,9 @@ services:
         environment:
             POSTGRES_HOSTNAME: postgres-db
             POSTGRES_PORT: 5432
-            POSTGRES_USER: vapor
+            POSTGRES_USER: waddle
             POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
-            POSTGRES_DB: vapor
+            POSTGRES_DB: waddle
 
             PORT: 9001
 
