@@ -12,6 +12,14 @@ networks:
         external: true
 
 
+secrets:
+    postgres_password:
+        external: true
+    hash_key:
+        external: true
+    cipher_key:
+        external: true
+        
 
 services:
 
@@ -44,14 +52,14 @@ services:
             - hash_key
             - cipher_key
         environment:
-            - POSTGRES_HOSTNAME=postgres-db
-            - POSTGRES_PORT=5432
-            - POSTGRES_USER=waddle
-            - POSTGRES_PASSWORD=S4bJCuDcMSYKZiln6MYU0xQgshI=
-            - POSTGRES_DB=waddle
-            - PORT=9001
-            - HASH_KEY=/run/secrets/hash_key
-            - CIPHER_KEY=/run/secrets/cipher_key
+            POSTGRES_HOSTNAME: postgres-db
+            POSTGRES_PORT: 5432
+            POSTGRES_USER: vapor
+            POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+            POSTGRES_DB: vapor
+
+            HASH_KEY: /run/secrets/hash_key
+            CIPHER_KEY: /run/secrets/cipher_key
 
         deploy:
             mode: replicated
@@ -74,10 +82,3 @@ services:
                 traefik.docker.network: "loadbalancer-net"
 
 
-secrets:
-    postgres_password:
-        external: true
-    hash_key:
-        external: true
-    cipher_key:
-        external: true
