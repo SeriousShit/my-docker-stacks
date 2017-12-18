@@ -19,7 +19,7 @@ secrets:
         external: true
     cipher_key:
         external: true
-        
+
 
 services:
 
@@ -57,6 +57,8 @@ services:
             POSTGRES_USER: vapor
             POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
             POSTGRES_DB: vapor
+
+            PORT: 9001
 
             HASH_KEY_FILE: /run/secrets/hash_key
             CIPHER_KEY_FILE: /run/secrets/cipher_key
