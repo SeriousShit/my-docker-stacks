@@ -26,9 +26,9 @@ services:
         secrets:
             - postgres_password
         environment:
-            POSTGRES_USER: vapor
-            POSTGRES_DB: /run/secrets/postgres_password
-            POSTGRES_PASSWORD: vapor
+            POSTGRES_USER: waddle
+            POSTGRES_DB: waddle
+            POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
 
 
     apiserver:
@@ -47,7 +47,7 @@ services:
             - POSTGRES_HOSTNAME=postgres-db
             - POSTGRES_PORT=5432
             - POSTGRES_USER=waddle
-            - POSTGRES_PASSWORD=/run/secrets/postgres_password
+            - POSTGRES_PASSWORD=S4bJCuDcMSYKZiln6MYU0xQgshI=
             - POSTGRES_DB=waddle
             - PORT=9001
             - HASH_KEY=/run/secrets/hash_key
