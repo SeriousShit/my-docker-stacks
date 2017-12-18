@@ -42,8 +42,8 @@ services:
     apiserver:
         image: waddle/webserver
         command: ["./wait-for-it.sh", "postgres-db:5432", "--", "docker-entrypoint.sh"] 
-        # ports:
-        #    - "9000:9000"
+        ports:
+           - "9001:9001"
         networks:
             - postgres-net
             - loadbalancer-net
