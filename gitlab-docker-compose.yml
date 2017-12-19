@@ -3,14 +3,14 @@ version: '3'
 services:
     gitlab:
         image: 'gitlab/gitlab-ce:latest'
-        restart: always
         hostname: 'gitlab.v22017125338957481.megasrv.de'
         environment:
           GITLAB_OMNIBUS_CONFIG: |
             external_url 'http://gitlab.v22017125338957481.megasrv.de'
             gitlab_rails['gitlab_shell_ssh_port'] = 2224
-        ports:
-          - '9090:9090'
+        # ports:
+        #   - '9090:9090'
+        #   - '2224:22'
         volumes:
           - '/srv/gitlab/config:/etc/gitlab'
           - '/srv/gitlab/logs:/var/log/gitlab'
