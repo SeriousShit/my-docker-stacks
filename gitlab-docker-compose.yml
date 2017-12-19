@@ -106,7 +106,7 @@ services:
           # TZ: Asia/Kolkata
           # GITLAB_TIMEZONE: Kolkata
       
-          GITLAB_HTTPS: false
+          GITLAB_HTTPS: "false"
           SSL_SELF_SIGNED: "false"
       
           GITLAB_HOST: localhost
