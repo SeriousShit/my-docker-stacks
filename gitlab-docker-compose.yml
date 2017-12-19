@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+    gitlab:
+        image: 'gitlab/gitlab-ce:latest'
+        restart: always
+        hostname: 'gitlab.v22017125338957481.megasrv.de'
+        environment:
+          GITLAB_OMNIBUS_CONFIG: |
+            external_url 'http://gitlab.v22017125338957481.megasrv.de'
+            gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        ports:
+          - '9090:9090'
+        volumes:
+          - '/srv/gitlab/config:/etc/gitlab'
+          - '/srv/gitlab/logs:/var/log/gitlab'
+          - '/srv/gitlab/data:/var/opt/gitlab'
+        
+        deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+            update_config:
+                parallelism: 1
+                delay: 10s
+            labels:
+                traefik.enable: "true"
+                traefik.frontend.passHostHeader: "true"
+                traefik.backend.loadbalancer.stickiness: "true"
+                traefik.backend.loadbalancer.swarm: "true"
+                traefik.port: "9090"
+                traefik.frontend.rule: "Host:gitlab.v22017125338957481.megasrv.de"
+                traefik.docker.network: "loadbalancer-net"
