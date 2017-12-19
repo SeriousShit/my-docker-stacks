@@ -3,6 +3,7 @@ version: '3'
 volumes:
     gitlab_postgres_db_data:
     gitlab_redis:
+    gitlab_data:
 
 networks:
     postgres-net:
@@ -88,7 +89,7 @@ services:
           - "10080:80"
           - "10022:22"
       volumes:
-          - /srv/docker/gitlab/gitlab:/home/git/data:Z
+          - gitlab_data:/home/git/data:Z
       environment:
           DEBUG: false
       
@@ -106,7 +107,7 @@ services:
           # GITLAB_TIMEZONE: Kolkata
       
           GITLAB_HTTPS: false
-          SSL_SELF_SIGNED: false
+          SSL_SELF_SIGNED: "false"
       
           GITLAB_HOST: localhost
           GITLAB_PORT: 10080
