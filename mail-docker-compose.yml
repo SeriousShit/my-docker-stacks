@@ -8,9 +8,6 @@ volumes:
 services:
     mail:
         image: tvial/docker-mailserver:latest
-        hostname: mail
-        domainname: .v22017125338957481.megasrv.de
-        # container_name: mail
         ports:
                 - "25:25"
                 - "143:143"
