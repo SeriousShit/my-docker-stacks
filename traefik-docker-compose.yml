@@ -7,15 +7,15 @@ networks:
 services:
     traefik:
         image: traefik:v1.4.4
-        command: --web --docker --docker.swarmmode --docker.watch --docker.domain=v22017125338957481.megasrv.de --logLevel=DEBUG
+        command: --web --docker --docker.swarmmode --docker.watch --docker.domain=v22017125338957481.megasrv.de
         ports:
            - "80:80"
            - "8080:8080"
            - "443:443"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-        labels:
-            - "traefik.enable=false"
+        # labels:
+        #     - "traefik.enable=false"
         networks:
             - loadbalancer-net
         deploy:

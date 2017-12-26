@@ -1,0 +1,49 @@
+version: '3'
+
+volumes:
+    maildata:
+    mailstate:
+    mailletsencrypt:
+    rainloop:
+
+networks:
+    loadbalancer-net:
+         external: true
+    mail-net:
+        driver: overlay
+        ipam:
+            config:
+                - subnet: 172.16.2.0/24
+
+services:
+    mail:
+        image: tvial/docker-mailserver:latest
+        ports:
+            - "25:25"
+            - "587:587"
+            - "993:993"
+        volumes:
+            - maildata:/var/mail
+            - mailstate:/var/mail-state
+            - mailletsencrypt:/etc/letsencrypt
+            - ./config/:/tmp/docker-mailserver
+
+        env_file: ./docker-mailserver.env
+        networks:
+            - mail-net
+        deploy:
+            replicas: 1
+
+    rainloop:
+        image: hardware/rainloop
+        networks:
+            - mail-net
+            - traefik_public
+        deploy:
+            labels:
+                - traefik.frontend.rule=Host:rainloop.example.com
+                - traefik.docker.network=traefik_public
+                - traefik.port=8888
+        volumes:
+            - rainloop:/rainloop/data
+
