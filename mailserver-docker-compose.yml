@@ -38,11 +38,11 @@ services:
         image: hardware/rainloop
         networks:
             - mail-net
-            - traefik_public
+            - loadbalancer-net
         deploy:
             labels:
-                - traefik.frontend.rule=Host:rainloop.example.com
-                - traefik.docker.network=traefik_public
+                - traefik.frontend.rule=Host:rainloop.v22017125338957481.megasrv.de
+                - traefik.docker.network=loadbalancer-net
                 - traefik.port=8888
         volumes:
             - rainloop:/rainloop/data
