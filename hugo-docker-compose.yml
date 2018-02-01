@@ -44,7 +44,7 @@ services:
             labels:
                 - "traefik.backend.loadbalancer.swarm=true"
                 - "traefik.port=80"
-                - "traefik.frontend.rule=Host:v22017125338957481.megasrv.de"
+                - "traefik.frontend.rule=Host:pixelschlampen.de"
                 - "traefik.docker.network=loadbalancer-net"
 
     hugo-git-sync:
