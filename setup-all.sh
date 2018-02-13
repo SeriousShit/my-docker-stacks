@@ -16,5 +16,11 @@ docker stack deploy -c jenkins-docker-compose.yml jenkins
 #homepage wirh Hugo
 docker stack deploy -c hugo-docker-compose.yml homepage
 
+#waddleApi
+docker stack deploy -c waddleApi-docker-compose.yml waddleApi
+
+#waddle static web
+docker stack deploy -c waddleStaticWeb-docker-compose.yml waddleStaticWeb
+
 #Traefik
 docker stack deploy -c traefik-docker-compose.yml traefik
