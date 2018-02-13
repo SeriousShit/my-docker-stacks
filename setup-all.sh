@@ -23,4 +23,5 @@ docker stack deploy -c waddleApi-docker-compose.yml waddleApi
 docker stack deploy -c waddleStaticWeb-docker-compose.yml waddleStaticWeb
 
 #Traefik
+touch acme.json && chmod 600 acme.json
 docker stack deploy -c traefik-docker-compose.yml traefik
