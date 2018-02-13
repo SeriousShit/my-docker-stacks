@@ -6,7 +6,7 @@ networks:
 
 services:
     traefik:
-        image: traefik:v1.4.4
+        image: traefik:v1.5
         command: --web --docker --docker.swarmmode --docker.watch --docker.domain=hagen-hasenbalg.de
         ports:
            - "80:80"
