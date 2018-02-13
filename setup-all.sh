@@ -3,7 +3,7 @@
 # setup or update all Docker Stacks
 
 #setup networks
-if [ ! "$(docker network ls | grep nginx-proxy)" ]; then
+if [ ! "$(docker network ls | grep loadbalancer-net)" ]; then
 	docker network create --driver=overlay loadbalancer-net
 fi
 
