@@ -3,8 +3,9 @@
 # setup or update all Docker Stacks
 
 #setup networks
-docker network create --driver=overlay loadbalancer-net
-
+if [ ! "$(docker network ls | grep nginx-proxy)" ]; then
+	docker network create --driver=overlay loadbalancer-net
+fi
 
 #Portainer
 docker stack deploy -c portainer-docker-compose.yml portainer
