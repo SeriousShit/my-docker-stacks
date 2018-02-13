@@ -25,8 +25,8 @@ services:
 
     postgres-db:
         image: postgres
-        ports:
-            - "5432:5432"
+        # ports:
+        #     - "5432:5432"
         volumes:
             - postgres_db_data:/var/lib/postgresql/data
         networks:
@@ -52,8 +52,8 @@ services:
     apiserver:
         image: waddle/webserver
         command: ["./wait-for-it.sh", "postgres-db:5432", "--", "docker-entrypoint.sh"] 
-        ports:
-           - "9001:9001"
+        # ports:
+        #    - "9001:9001"
         networks:
             - postgres-net
             - loadbalancer-net

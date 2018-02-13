@@ -11,8 +11,8 @@ services:
         image: waddle/webclient:latest
         networks:
             - loadbalancer-net
-        ports:
-            - "8888:80"
+        # ports:
+        #     - "8888:80"
         deploy:
             # placement:
             #     constraints: [node.role == worker]
