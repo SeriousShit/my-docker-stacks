@@ -5,9 +5,15 @@
 #setup networks
 docker network create --driver=overlay loadbalancer-net
 
+
 #Portainer
 docker stack deploy -c portainer-docker-compose.yml portainer
-#Mailserver
-#docker stack deploy -c mailserver-docker-compose.yml mailserver
+
+#jenkins
+docker stack deploy -c jenkins-docker-compose.yml jenkins
+
+#homepage wirh Hugo
+docker stack deploy -c hugo-docker-compose.yml homepage
+
 #Traefik
 docker stack deploy -c traefik-docker-compose.yml traefik
