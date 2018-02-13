@@ -1,0 +1,14 @@
+version: '3'
+
+
+networks:
+    loadbalancer-net:
+         external: true
+
+
+volumes:
+    website_sources:
+    website_static_files:
+
+services:
+	

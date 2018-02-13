@@ -44,7 +44,10 @@ services:
             labels:
                 - "traefik.backend.loadbalancer.swarm=true"
                 - "traefik.port=80"
-                - "traefik.frontend.rule=Host:pixelschlampen.de, hagen-hasenbalg.de, www.pixelschlampen.de, www.hagen-hasenbalg.de"
+                - "traefik.frontend.rule=Host:pixelschlampen.de, 
+                                              hagen-hasenbalg.de,
+                                              www.pixelschlampen.de,
+                                              www.hagen-hasenbalg.de"
                 - "traefik.docker.network=loadbalancer-net"
 
     hugo-git-sync:

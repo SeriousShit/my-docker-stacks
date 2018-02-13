@@ -7,13 +7,16 @@ networks:
 services:
     traefik:
         image: traefik:v1.4.4
-        command: --web --docker --docker.swarmmode --docker.watch --docker.domain=v22017125338957481.megasrv.de
+        container_name: traefik
+        command: --web --docker --docker.swarmmode --docker.watch --docker.domain=hagen-hasenbalg.de
         ports:
            - "80:80"
            - "8080:8080"
            - "443:443"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
+            - ./traefik.toml:/traefik.toml
+            - ./acme.json:/acme.json
         # labels:
         #     - "traefik.enable=false"
         networks:
