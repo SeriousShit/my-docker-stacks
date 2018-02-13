@@ -27,5 +27,5 @@ services:
             labels:
                 - "traefik.backend.loadbalancer.swarm=true"
                 - "traefik.port=80"
-                - "traefik.frontend.rule=Host:waddle.v22017125338957481.megasrv.de"
+                - "traefik.frontend.rule=Host:waddle.hagen-hasenbalg.de"
                 - "traefik.docker.network=loadbalancer-net"
