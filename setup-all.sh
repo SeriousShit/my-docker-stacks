@@ -26,3 +26,5 @@ docker stack deploy -c waddleStaticWeb-docker-compose.yml waddleStaticWeb
 touch acme.json && chmod 600 acme.json
 docker stack deploy -c traefik-docker-compose.yml traefik
 
+#openldap
+docker stack deploy -c openldap-docker-compose.yml waddleStaticWeb
