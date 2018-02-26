@@ -30,7 +30,7 @@ services:
             - loadbalancer-net
             - internal
         volumes:
-            - wenkan_oauth2_proxy/authenticated-emails.txt:/authenticated-emails.txt
+            - wenkan_oauth2_proxy:/authenticated-emails.txt
         deploy:
             labels:
                 - traefik.frontend.rule=Host:wekan.hagen-hasenbalg.de
