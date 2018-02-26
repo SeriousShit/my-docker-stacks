@@ -33,9 +33,10 @@ services:
             - wenkan_oauth2_proxy:/authenticated-emails.txt
         deploy:
             labels:
-                - traefik.frontend.rule=Host:wekan.hagen-hasenbalg.de
-                - traefik.docker.network=traefik
-                - traefik.port=4180
+                - "traefik.backend.loadbalancer.swarm=true"
+                - "traefik.port=4180"
+                - "traefik.frontend.rule=Host:wekan.hagen-hasenbalg.de"
+                - "traefik.docker.network=loadbalancer-net"
         command: |
             -cookie-secure=false
             -upstream=http://wekan:80
