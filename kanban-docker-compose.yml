@@ -22,7 +22,7 @@ services:
         image: kanboard/kanboard
         volumes:
             - kanboard_data:/var/www/app/data
-            - kanboard_plugins:/var/www/app/plugins
+            - ./kanboard_plugins:/var/www/app/plugins
         networks:
             - loadbalancer-net
         deploy:
