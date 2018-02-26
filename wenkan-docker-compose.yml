@@ -1,6 +1,7 @@
 version: '3'
 
 networks:
+    internal:
     loadbalancer-net:
          external: true
 
