@@ -28,3 +28,6 @@ docker stack deploy -c traefik-docker-compose.yml traefik
 
 #openldap
 docker stack deploy -c openldap-docker-compose.yml waddleStaticWeb
+
+#wenkan
+docker stack deploy -c wenkan-docker-compose.yml wenkan
