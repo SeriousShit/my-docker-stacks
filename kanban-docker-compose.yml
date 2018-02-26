@@ -24,7 +24,7 @@ services:
             - kanboard_data:/var/www/app/data
             - kanboard_plugins:/var/www/app/plugins
         networks:
-            - traefik
+            - loadbalancer-net
         deploy:
             labels:
                 - traefik.frontend.rule=Host:kanboard.hagen-hasenbalg.de
