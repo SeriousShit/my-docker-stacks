@@ -4,6 +4,13 @@ networks:
   traefik:
     external: true
 
+volumes:
+    wenkan_wekandb_data:
+    wenkan_wekandb_dump:
+    wenkan_oauth2_proxy:
+    gitlab_logs:
+    gitlab_data:
+
 services:
 
   wekandb:
@@ -12,8 +19,8 @@ services:
     networks:
       - internal
     volumes:
-      - /var/data/runtime/wekan/database:/data/db
-      - /var/data/wekan/database-dump:/dump
+      - wenkan_wekandb_data:/data/db
+      - wenkan_wekandb_dump:/dump
 
   proxy:
     image: zappi/oauth2_proxy
@@ -22,7 +29,7 @@ services:
       - traefik
       - internal
     volumes:
-      - /var/data/oauth_proxy/authenticated-emails.txt:/authenticated-emails.txt
+      - wenkan_oauth2_proxy/authenticated-emails.txt:/authenticated-emails.txt
     deploy:
       labels:
         - traefik.frontend.rule=Host:wekan.hagen-hasenbalg.de
@@ -41,13 +48,13 @@ services:
     image: wekanteam/wekan:latest
     networks:
       - internal
-    env_file: /var/data/config/wekan/wekan.env
+    env_file: wekan.env
 
   db-backup:
     image: mongo:latest
     env_file : /var/data/config/wekan/wekan.env
     volumes:
-      - /var/data/wekan/database-dump:/dump
+       - wenkan_wekandb_dump:/dump
       - /etc/localtime:/etc/localtime:ro
     entrypoint: |
       bash -c 'bash -s <<EOF
