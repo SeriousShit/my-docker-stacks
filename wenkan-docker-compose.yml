@@ -24,7 +24,7 @@ services:
 
     proxy:
         image: zappi/oauth2_proxy
-        env_file: /var/data/config/wekan/wekan.env
+        env_file: wekan.env
         networks:
             - traefik
             - internal
@@ -52,7 +52,7 @@ services:
 
     db-backup:
         image: mongo:latest
-        env_file : /var/data/config/wekan/wekan.env
+        env_file : wekan.env
         volumes:
             - wenkan_wekandb_dump:/dump
             - /etc/localtime:/etc/localtime:ro
