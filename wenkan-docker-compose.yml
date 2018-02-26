@@ -1,8 +1,8 @@
 version: '3'
 
 networks:
-    traefik:
-        external: true
+    loadbalancer-net:
+         external: true
 
 volumes:
     wenkan_wekandb_data:
@@ -26,7 +26,7 @@ services:
         image: zappi/oauth2_proxy
         env_file: wekan.env
         networks:
-            - traefik
+            - loadbalancer-net
             - internal
         volumes:
             - wenkan_oauth2_proxy/authenticated-emails.txt:/authenticated-emails.txt
