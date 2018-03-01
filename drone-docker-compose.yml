@@ -9,12 +9,6 @@ networks:
 volumes:
   drone-server-data:
 
-configs:
-  server-env:
-    file: ./env/.drone-env
-  agent-env:
-    file: ./env/.drone-env
-
 services:
   drone-server:
     image: drone/drone:0.8
@@ -69,3 +63,9 @@ services:
       update_config:
         parallelism: 1
         delay: 20s
+
+configs:
+  server-env:
+    file: ./env/.drone-env
+  agent-env:
+    file: ./env/.drone-env
