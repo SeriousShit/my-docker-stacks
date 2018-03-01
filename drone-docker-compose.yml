@@ -11,9 +11,9 @@ volumes:
 
 configs:
   server-env:
-  file: ./env/.drone-env
+    file: ./env/.drone-env
   agent-env:
-  file: ./env/.drone-env
+    file: ./env/.drone-env
 
 services:
   drone-server:
