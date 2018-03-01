@@ -29,7 +29,6 @@ services:
     configs:
       - source: server-env
         target: /.env
-
     restart: always
     deploy:
       # placement:
