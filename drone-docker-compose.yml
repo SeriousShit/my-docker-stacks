@@ -66,4 +66,3 @@ services:
 configs:
   drone_config:
     file: ./env/.drone-env
-
