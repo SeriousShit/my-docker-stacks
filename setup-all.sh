@@ -11,7 +11,7 @@ fi
 docker stack deploy -c portainer-docker-compose.yml portainer
 
 #jenkins
-docker stack deploy -c jenkins-docker-compose.yml jenkins
+# docker stack deploy -c jenkins-docker-compose.yml jenkins
 
 #homepage wirh Hugo
 docker stack deploy -c hugo-docker-compose.yml homepage
