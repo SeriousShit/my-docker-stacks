@@ -1,4 +1,4 @@
-version: '3'
+version: "3.3"
 
 networks:
   loadbalancer-net:
@@ -63,6 +63,7 @@ services:
       update_config:
         parallelism: 1
         delay: 20s
+        
 configs:
   drone_config:
     file: ./env/.drone-env
