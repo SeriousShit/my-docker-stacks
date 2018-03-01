@@ -28,7 +28,8 @@ services:
             - drone-server-data:/var/lib/drone/
         configs:
             - source: server-env
-                target: /.env
+              target: /.env
+              
         restart: always
         environment:
             - DRONE_OPEN=true
