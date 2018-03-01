@@ -29,7 +29,7 @@ services:
         configs:
             - source: server-env
               target: /.env
-              
+
         restart: always
         environment:
             - DRONE_OPEN=true
@@ -61,7 +61,7 @@ services:
             - drone
         configs:
             - source: agent-env
-                target: /.env
+              target: /.env
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
         environment:
