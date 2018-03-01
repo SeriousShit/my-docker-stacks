@@ -21,7 +21,7 @@ services:
     volumes:
       - drone-server-data:/var/lib/drone/
     configs:
-      - source: server-env
+      - source: drone_config
         target: /.env
     restart: always
     deploy:
@@ -46,7 +46,7 @@ services:
     networks:
       - drone
     configs:
-      - source: agent-env
+      - source: drone_config
         target: /.env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -63,9 +63,7 @@ services:
       update_config:
         parallelism: 1
         delay: 20s
-
 configs:
-  server-env:
+  drone_config:
     file: ./env/.drone-env
-  agent-env:
-    file: ./env/.drone-env
+
