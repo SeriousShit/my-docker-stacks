@@ -7,41 +7,41 @@ networks:
     driver: overlay
 
 volumes:
-  drone-server-data:
+  dronedata:
+    external: true
 
 services:
   drone-server:
-    image: drone/drone:0.8
-
+    image: drone/drone:latest
     ports:
-      - 8000:8000
+      - "10.0.0.10:9000:9000/tcp"
     networks:
       - drone
       - loadbalancer-net
     volumes:
-      - drone-server-data:/var/lib/drone/
+      - dronedata:/var/lib/drone
     configs:
       - source: drone_config
         target: /.env
-    restart: always
     deploy:
       # placement:
       #   constraints:
       #     - node.role==worker
-      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 3
         window: 120s
       labels:
-        - traefik.frontend.rule=Host:drone.hagen-hasenbalg.de
-        - traefik.docker.network=traefik
-        - traefik.port=8000
+        - "traefik.enable=true"
+        - "traefik.port=8000"
+        - "traefik.backend=ci"
+        - "traefik.docker.network=loadbalancer-net"
+        - "traefik.frontend.rule=Host:drone.hagen-hasenbalg.de"
 
 
   drone-agent:
-    image: drone/agent:0.8
+    image: drone/agent:latest
     command: agent
     networks:
       - drone
@@ -54,7 +54,7 @@ services:
       # placement:
       #   constraints:
       #     - node.role==worker
-      replicas: 1
+      replicas: 3
       restart_policy:
         condition: on-failure
         delay: 5s
