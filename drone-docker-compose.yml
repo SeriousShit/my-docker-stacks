@@ -4,7 +4,6 @@ networks:
   loadbalancer-net:
     external: true
   drone:
-    driver: overlay
 
 volumes:
   dronedata:
