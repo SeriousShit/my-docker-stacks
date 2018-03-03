@@ -8,12 +8,12 @@ networks:
 
 volumes:
     gogs-data:
-        driver: local
+    postgres_db_data:
 
 secrets:
     postgres_password:
         external: true
-        
+
 services:
 
     gogs:
