@@ -1,0 +1,43 @@
+version: '3'
+
+networks:
+    postgres-net:
+        external: true
+    loadbalancer-net:
+        external: true
+
+volumes:
+    gogs-data:
+      driver: local
+
+services:
+
+    gogs:
+      image: gogs/gogs:latest
+      restart: always
+      ports:
+       # - "10022:22"
+       # - "3000:3000"
+      environment:
+        - "RUN_CROND=true"
+      networks:
+        - loadbalancer-net
+      volumes:
+        - "gogs-data:/data"
+      depends_on:
+        - postgres
+      deploy:
+        # placement:
+        #   constraints:
+        #     - node.role==worker
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+        labels:
+          - "traefik.enable=true"
+          - "traefik.port=3000"
+          - "traefik.backend=git"
+          - "traefik.docker.network=loadbalancer-net"
+          - "traefik.frontend.rule=Host:git.hagen-hasenbalg.de"

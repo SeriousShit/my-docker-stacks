@@ -27,7 +27,10 @@ touch acme.json && chmod 600 acme.json
 docker stack deploy -c traefik-docker-compose.yml traefik
 
 #openldap
-docker stack deploy -c openldap-docker-compose.yml waddleStaticWeb
+#docker stack deploy -c openldap-docker-compose.yml waddleStaticWeb
 
 #kanboard
 docker stack deploy -c kanban-docker-compose.yml kanboard
+
+#drone ci server
+docker stack deploy -c drone-docker-compose.yml drone

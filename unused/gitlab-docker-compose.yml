@@ -1,0 +1,35 @@
+version: '3'
+
+
+networks:
+    loadbalancer-net:
+         external: true
+
+
+volumes:
+    gitlab_config:
+    gitlab_logs:
+    gitlab_data:
+
+
+services:
+    gitlab:
+        image: gitlab/gitlab-ce:latest
+        volumes:
+            - gitlab_config:/etc/gitlab
+            - gitlab_logs:/var/log/gitlab 
+            - gitlab_data:/var/opt/gitlab 
+        hostname: gitlab.hagen-hasenbalg.de
+        ports:
+            - "8888:80"
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+            labels:
+                - "traefik.backend.loadbalancer.swarm=true"
+                - "traefik.port=80"
+                - "traefik.frontend.rule=Host:gitlab.hagen-hasenbalg.de"
+                - "traefik.docker.network=loadbalancer-net"
