@@ -3,7 +3,8 @@ version: "3.3"
 networks:
   loadbalancer-net:
     external: true
-  drone:
+  bridge:
+    external: true
 
 volumes:
   dronedata:
@@ -15,7 +16,7 @@ services:
     ports:
       - "10.0.0.10:9000:9000/tcp"
     networks:
-      - drone
+      - bridge
       - loadbalancer-net
     volumes:
       - dronedata:/var/lib/drone
@@ -43,7 +44,7 @@ services:
     image: drone/agent:latest
     command: agent
     networks:
-      - drone
+      - bridge
     configs:
       - source: drone_config
         target: /.env
