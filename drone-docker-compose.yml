@@ -54,7 +54,7 @@ services:
       # placement:
       #   constraints:
       #     - node.role==worker
-      replicas: 1
+      replicas: 4
       restart_policy:
         condition: on-failure
         delay: 5s
