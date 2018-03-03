@@ -56,9 +56,9 @@ services:
         secrets:
             - postgres_password
         environment:
-            POSTGRES_USER: waddle
-            POSTGRES_DB: waddle
-            POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+            POSTGRES_USER: gogs
+            POSTGRES_DB: gogs
+            POSTGRES_PASSWORD_FILE: /run/secrets/gogs_postgres_password
         deploy:
             mode: replicated
             replicas: 1
