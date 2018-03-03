@@ -5,6 +5,7 @@ networks:
     external: true
   bridge:
     external: true
+    scope: swarm
 
 volumes:
   dronedata:
