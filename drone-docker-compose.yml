@@ -4,6 +4,9 @@ networks:
   loadbalancer-net:
     external: true
   drone:
+    driver: overlay
+  bridge:
+    external: true
 
 volumes:
   dronedata:
@@ -44,6 +47,7 @@ services:
     command: agent
     networks:
       - drone
+      - bridge
     configs:
       - source: drone_config
         target: /.env
