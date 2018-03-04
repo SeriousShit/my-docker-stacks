@@ -20,6 +20,7 @@ services:
     networks:
       - drone
       - loadbalancer-net
+      - bridge
     volumes:
       - dronedata:/var/lib/drone
     configs:
