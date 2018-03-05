@@ -8,8 +8,6 @@ networks:
 volumes:
     website_sources:
     website_static_files:
-        source: /usr/share/nginx/html/
-
 
 services:
     # hugo:
