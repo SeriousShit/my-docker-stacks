@@ -1,6 +1,5 @@
 version: '3'
 
-
 networks:
     loadbalancer-net:
         external: true
@@ -10,20 +9,20 @@ volumes:
     website_static_files:
 
 services:
-    # hugo:
-    #     image: jojomi/hugo:latest
-    #     volumes:
-    #         - website_sources:/src
-    #         - website_static_files:/output
-    #     environment:
-    #         - HUGO_REFRESH_TIME=1800
-    #         - HUGO_BASEURL=/
-    #     deploy:
-    #         restart_policy:
-    #             condition: on-failure
-    #             delay: 10s
-    #             max_attempts: 3
-    #             window: 120s
+    hugo:
+        image: jojomi/hugo:latest
+        volumes:
+            - website_sources:/src
+            - website_static_files:/output
+        environment:
+            - HUGO_REFRESH_TIME=1800
+            - HUGO_BASEURL=/
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
 
     hugo-nginx:
         image: nginx:stable-alpine
