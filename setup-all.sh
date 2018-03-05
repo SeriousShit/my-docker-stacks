@@ -14,6 +14,7 @@ docker stack deploy -c portainer-docker-compose.yml portainer
 # docker stack deploy -c jenkins-docker-compose.yml jenkins
 
 #homepage wirh Hugo
+docker volume create website_static_files
 docker stack deploy -c hugo-docker-compose.yml homepage
 
 #waddleApi
