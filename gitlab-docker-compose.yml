@@ -3,7 +3,7 @@ version: '3'
 
 networks:
     loadbalancer-net:
-         external: true
+        external: true
 
 
 volumes:
