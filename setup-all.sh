@@ -18,10 +18,10 @@ docker volume create website_static_files
 docker stack deploy -c hugo-docker-compose.yml homepage
 
 #waddleApi
-docker stack deploy -c waddleApi-docker-compose.yml waddleApi
+# docker stack deploy -c waddleApi-docker-compose.yml waddleApi
 
 #waddle static web
-docker stack deploy -c waddleStaticWeb-docker-compose.yml waddleStaticWeb
+# docker stack deploy -c waddleStaticWeb-docker-compose.yml waddleStaticWeb
 
 #Traefik
 touch acme.json && chmod 600 acme.json
