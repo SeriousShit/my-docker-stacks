@@ -10,6 +10,10 @@ volumes:
   dronedata:
     external: true
 
+configs:
+  drone_config:
+    file: ./env/.drone-env
+
 services:
   drone-server:
     image: drone/drone:latest
@@ -63,7 +67,3 @@ services:
       update_config:
         parallelism: 1
         delay: 20s
-
-configs:
-  drone_config:
-    file: ./env/.drone-env
