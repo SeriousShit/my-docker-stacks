@@ -3,6 +3,8 @@ version: "3"
 networks:
   gitea:
     external: false
+  loadbalancer-net:
+    external: true
 
 volumes:
   gitea:
@@ -16,6 +18,7 @@ services:
       - USER_GID=1000
     networks:
       - gitea
+      - loadbalancer-net
     volumes:
       - ./gitea:/data
     ports:
