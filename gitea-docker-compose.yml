@@ -14,7 +14,6 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
-    restart: always
     networks:
       - gitea
     volumes:
@@ -35,4 +34,4 @@ services:
         - "traefik.port=3000"
         - "traefik.backend=ci"
         - "traefik.docker.network=loadbalancer-net"
-        - "traefik.frontend.rule=Host:drone.hagen-hasenbalg.de"
+        - "traefik.frontend.rule=Host:git.hagen-hasenbalg.de"
