@@ -1,0 +1,38 @@
+version: "3"
+
+networks:
+  gitea:
+    external: false
+
+volumes:
+  gitea:
+    driver: local
+
+services:
+  server:
+    image: gitea/gitea:latest
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: always
+    networks:
+      - gitea
+    volumes:
+      - ./gitea:/data
+    ports:
+      - "222:22"
+    deploy:
+      # placement:
+      #   constraints:
+      #     - node.role==worker
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=3000"
+        - "traefik.backend=ci"
+        - "traefik.docker.network=loadbalancer-net"
+        - "traefik.frontend.rule=Host:drone.hagen-hasenbalg.de"
