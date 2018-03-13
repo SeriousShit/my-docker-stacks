@@ -20,7 +20,7 @@ services:
       - gitea
       - loadbalancer-net
     volumes:
-      - ./gitea:/data
+      - gitea:/data
     ports:
       - "222:22"
     deploy:
